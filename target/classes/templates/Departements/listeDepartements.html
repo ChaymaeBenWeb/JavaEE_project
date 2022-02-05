@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template">
+      
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Liste des Départements</title>
+</head>
+<body>
+ <div layout:fragment="Mycontent">
+<div class="container">
+<div class="card bg-light">
+		<!--<span th:text= " ${departements.content.size}"></span>-->
+  <div class="card-title card-header">
+    Liste des Départements
+  </div>
+  <div class="card-body">
+      <form th:action="@{/SearchDepartments}" method="get">
+          <label>Nom Departement</label>
+          <input type="text" name="searchKeyword" th:value="${searchKeyword}"/>
+          <button type="submit" class="btn btn-warning">Rechercher</button>
+      </form>
+      <br/>
+      <table class="table table-striped table-hover table-sm">
+          <thead >
+          <tr class="thead-dark">
+              <th scope="col">Dep</th><th scope="col">ChefLieu </th><th scope="col">Nom Dep</th><th scope="col">Reg</th><th scope="col">Actions</th>
+         </tr>
+          </thead>
+          <tbody>
+           <tr th:each="d:${departements.content }">
+              <td th:text="${d.dep}"></td>
+               <td th:text="${d?.chefLieu?.codeInsee}"></td>
+              <td th:text="${d.nomDep}"></td>
+              <td th:text="${d.reg}"></td>
+             
+              <td><a class="btn btn-yellow" th:href="@{modifierDepartement(id=${d.dep})}">Editer</a>
+                  <a class="btn btn-warning" onclick="return confirm('Etes-vous sûr ?')"
+                th:href="@{supprimerDepartement(id=${d.dep}, page=${currentPage},size=${size})}">Supprimer</a></td>
+           </tr>
+          </tbody>
+      </table>
+            <ul class="nav nav-pills">
+         <li th:each="page,status:${pages}">
+           <a th:class="${status.index==currentPage?'btn btn-success':'btn'  }"
+              th:href="@{ SearchDepartments(searchKeyword=${searchKeyword},page=${status.index}, size=${size} ) }"
+              th:text="${status.index }"></a>
+         </li>
+      </ul>
+      
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

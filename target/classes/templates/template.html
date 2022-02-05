@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link th:href="@{/css/style.css}" href="/css/style.css"  rel="stylesheet" type="text/css"  />
+  <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+<head>
+<meta charset="utf-8">
+<title>Office D'informations</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Office D'informations</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">		
+	<div class="btn-group">
+        <button type="button" class="btn btn-yellow dropdown-toggle" data-toggle="dropdown">Celebrite</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item"  th:href="@{showCreate}">Ajouter</a>
+        <a class="dropdown-item"  th:href="@{ListeCelebrites}">Lister</a>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-yellow dropdown-toggle" data-toggle="dropdown">Monument</button>
+        <div class="dropdown-menu">
+           <a class="dropdown-item"  th:href="@{showCreateM}">Ajouter</a>
+           <a class="dropdown-item"  th:href="@{ListeMonuments}">Lister</a>
+            <a class="dropdown-item" th:href="@{/formMonumentDistance}" >Distance</a>
+        </div>
+    </div>
+       <div class="btn-group">
+        <button type="button" class="btn btn-yellow dropdown-toggle" data-toggle="dropdown">Lieu</button>
+        <div class="dropdown-menu">
+           <a class="dropdown-item"  th:href="@{showCreateL}">Ajouter</a>
+           <a class="dropdown-item"  th:href="@{ListeLieux}">Lister</a>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-yellow dropdown-toggle" data-toggle="dropdown">Departement</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item"  th:href="@{showCreateD}">Ajouter</a>
+        <a class="dropdown-item"  th:href="@{ListeDepartements}">Lister</a>
+<!--        <a class="dropdown-item" th:href="@{showSearch}">Rechercher</a>-->
+        </div>
+    </div>
+  </ul>
+    <ul class="navbar-nav ml-auto" >
+     <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+      [ <span sec:authentication="principal.username"> User</span>]
+      </a>
+      <div class="dropdown-menu">
+       	<a class="navbar-brand" href="#" th:href="@{/}">Inscription et Connexion</a>
+      <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" style="color: white">Se Déconnecter</a></li>
+      <!--   <a class="dropdown-item" href="#">Profile</a> -->
+      </div>
+    </li>
+  </ul>
+</nav>
+ 
+  
+<section layout:fragment="Mycontent" ></section>
+<!--<footer class="footer">
+    <div class="container">
+        <p class="text-muted">© 2022 BENAYYADE Chaymae</p>
+    </div>
+</footer>-->
+
+</body>
+</html>

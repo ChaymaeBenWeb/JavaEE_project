@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template">
+      
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Liste des Monuments</title>
+</head>
+<body>
+ <div layout:fragment="Mycontent">
+<div class="container">
+<div class="card bg-light">
+		<!--<span th:text= " ${monuments.content.size}"></span>-->
+  <div class="card-title card-header">
+    Liste des Monuments
+  </div>
+  <div class="card-body">
+      <form th:action="@{/SearchMonuments}" method="get">
+          <label>Nom Monument</label>
+          <input type="text" name="searchKeyword" th:value="${searchKeyword}"/>
+          <button type="submit" class="btn btn-warning">Rechercher</button>
+      </form>
+      <br/>
+      <table class="table table-striped table-hover table-sm">
+          <thead >
+          <tr class="thead-dark">
+              <th scope="col">codeM</th><th scope="col">NomM </th><th scope="col">proprietaire</th><th scope="col">typeMonument</th><th scope="col">codeLieu</th><th scope="col">longitude</th><th scope="col">latidute</th><th scope="col">Actions</th>
+         </tr>
+          </thead>
+          <tbody>
+           <tr th:each="m:${monuments.content}">
+              <td th:text="${m.codeM}"></td>
+              <td th:text="${m.nomM}"></td>
+              <td th:text="${m.proprietaire}"></td>   
+              <td th:text="${m.typeMonument}"></td>
+              <td th:text="${m?.codeLieu?.codeInsee}"></td>
+              <td th:text="${m.longitude}"></td>   
+              <td th:text="${m.latitude}"></td> 
+              <td><a class="btn btn-yellow" th:href="@{modifierMonument(id=${m.codeM})}">Editer</a>
+                <a class="btn btn-warning" onclick="return confirm('Etes-vous sûr ?')"
+                th:href="@{supprimerMonument(id=${m.codeM}, page=${currentPage},size=${size})}">Supprimer</a></td> 
+           		
+           </tr>
+          </tbody>
+      </table>
+            <ul class="nav nav-pills">
+         <li th:each="page,status:${pages}">
+           <a th:class="${status.index==currentPage?'btn btn-success':'btn'  }"
+              th:href="@{ SearchMonuments(searchKeyword=${searchKeyword},page=${status.index}, size=${size} ) }"
+              th:text="${status.index }"></a>
+         </li>
+      </ul>
+      
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

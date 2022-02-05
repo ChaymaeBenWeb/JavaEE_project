@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template">
+<link rel="stylesheet" type="text/css"
+      href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+    <meta charset="utf-8">
+    <title> La distance entre les Monuments</title>
+</head>
+<body>
+<div layout:fragment="Mycontent">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+            <form th:action="@{distance}" method="get">
+                <div class="form-group">
+                <label>Monument 1</label>
+                <!-- <input type="text" name="codeMA"/> -->
+
+                <select class="form-control" name="codeMA">
+                    <option th:each="m : ${monuments}"
+
+                            th:value="${{m.codeM}}"
+                            th:text="${m.getNomM()}">monuments
+                    </option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label>Monument 2</label>
+                <!-- <input type="text" name="codeMB" /> -->
+                <select class="form-control" name="codeMB">
+                    <option th:each="m : ${monuments}"
+                            th:value="${{m.codeM}}"
+                            th:text="${m.getNomM()}">monuments
+                    </option>
+                </select>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5 col-sm-offset-7">
+                            <input type="submit" class="btn btn-yellow" value="calculer"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5 col-sm-offset-2" >
+                            <p th:text="${distance}">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

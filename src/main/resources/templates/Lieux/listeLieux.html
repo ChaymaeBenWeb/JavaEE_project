@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template">
+      
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Liste des Lieux</title>
+</head>
+<body>
+ <div layout:fragment="Mycontent">
+<div class ="container mt-3">
+<div class="card bg-light">
+		<!--<span th:text= " ${lieux.content.size}"></span>-->
+    <div class="card-title card-header">
+    Liste des Lieux
+  </div>
+  <div class="card-body">
+      <form th:action="@{/SearchLieux}" method="get">
+          <label>Nom Lieu</label>
+          <input type="text" name="searchKeyword" th:value="${searchKeyword}"/>
+          <button type="submit" class="btn btn-warning">Rechercher</button>
+      </form>
+      <br/>
+      <table class="table table-striped table-hover table-sm">
+          <thead >
+          <tr class="thead-dark">
+              <th scope="col">CodeInsee</th>
+              <th scope="col">Departement</th>
+              <th scope="col">Commune </th>
+              <th scope="col">Longitude</th>
+              <th scope="col">Latidute</th>
+              <th scope="col">Actions</th>
+         </tr>
+          </thead>
+          <tbody>
+           <tr th:each="l:${lieux.content }">
+              <td th:text="${l.codeInsee}"></td>
+              <td th:text="${l.dep}"></td>
+              <td th:text="${l.nomCom}"></td>
+              <td th:text="${l.longitude}"></td>   
+              <td th:text="${l.latitude}"></td> 
+              <td><a class="btn btn-yellow" th:href="@{modifierLieu(id=${l.codeInsee})}">Editer</a>
+                  <a class="btn btn-warning" onclick="return confirm('Etes-vous sûr ?')"
+                th:href="@{supprimerLieu(id=${l.codeInsee}, page=${currentPage},size=${size})}">Supprimer</a></td>
+           </tr>
+          </tbody>
+      </table>
+            <ul class="nav nav-pills">
+         <li th:each="page,status:${pages}">
+           <a th:class="${status.index==currentPage?'btn btn-success':'btn'  }"
+              th:href="@{ SearchLieux(searchKeyword=${searchKeyword},page=${status.index}, size=${size} ) }"
+              th:text="${status.index }"></a>
+         </li>
+      </ul>
+      <!-- <a th:href="@{/}"><button>Retour</button></a> --> 
+  </div>
+  
+</div>
+</div>
+</div>
+</body>
+</html>

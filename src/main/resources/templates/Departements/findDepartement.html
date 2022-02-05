@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="template">
+<head>
+<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+<meta charset="UTF-8">
+<title>Search</title>
+</head>
+<body>
+
+<div layout:fragment="Mycontent" class="noborder">
+
+ <form th:action="@{/searchData}" method="get">
+	<label>Numero departement</label>
+	<input type="text" name="searchKeyword" />
+	<button type="submit" class="btn btn-dark">Rechercher</button>
+  </form>
+  <table class="table table-bordered table-dark" th:if="${departement}">
+<thead>
+<tr>
+<th>Departement</th>
+<th>Chef lieu</th>
+<th>numero de departement</th>
+<th>numero de region</th>
+<th>supprimer</th>
+<th>modifier</th>
+</tr>
+</thead>
+<tbody >
+
+<tr  >
+
+ <td th:text="${departement.dep}"></td>
+<td th:text="${departement.chefLieu}"></td>
+<td th:text="${departement.nomDep}" ></td>
+<td th:text="${departement.numReg}"></td>
+
+<td> <a onclick="return confirm('Etes vous sure ?')" th:href="@{/deleteDep(dep=${departement.dep})}">Supprimer</a></td>
+<td><a th:href="@{editDepartement(dep=${departement.dep})}">Edit</a></td>
+
+</tr>
+</tbody>
+  </table>
+</div>
+
+<script th:replace="fragments :: scripts"></script>          
+
+</body>
+</html>

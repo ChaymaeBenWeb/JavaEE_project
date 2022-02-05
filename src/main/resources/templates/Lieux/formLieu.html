@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Ajouter un Lieu</title>
+</head>
+<body>
+	<div layout:fragment="Mycontent">
+		<div class="container mt-5">
+		<div class="card">
+			<div class="card-header bg-warning text-white" th:if="${mode=='new'}"> Ajout des Lieux </div>
+			<div class="card-header bg-warning text-white" th:if="${mode=='edit'}">Modification des Lieux </div>
+							<div class="card-body">
+								
+					<form name ="lieu" th:action="@{saveLieu}" method="post">
+						
+						<div class="form-group" style= "visibility:visible" th:if="${mode=='new'}">
+							<label class="control-label">codeInsee:</label> 
+								
+								<input type="text" name="codeInsee" class="form-control" 
+								th:value="codeInsee"/>
+						</div>
+						
+						<div class="form-group" style= "visibility:hidden" th:if="${mode=='edit'}">
+							<label class="control-label">codeInsee</label> 
+								
+								<input type="text" name="codeInsee" class="form-control" 
+								th:value="${lieu.codeInsee}"/>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label">Commune :</label> 
+							<input type="text" name="nomCom" class="form-control" th:if="${mode=='new'}"
+								th:value= "nomCom" />
+							<input type="text" name="nomCom" class="form-control" th:if="${mode=='edit'}"
+								th:value="${lieu.nomCom}"/>
+						</div>		
+						<div class="form-group">
+							<label class="control-label">Departement :</label> 
+							<input type="text" name="dep" class="form-control" th:if="${mode=='new'}"
+								th:value="${dep}"/>
+							<input type="text" name="dep" class="form-control" th:if="${mode=='edit'}"
+								th:value="${lieu.dep}" /> 
+						</div>
+						<div class="form-group">
+							<label class="control-label">Longitude:</label> 
+							<input type="text" name="longitude" class="form-control" th:if="${mode=='new'}"
+								th:value="longitude" />
+							<input type="text" name="longitude" class="form-control" th:if="${mode=='edit'}"
+								th:value="${lieu.longitude}"/>
+						</div>
+						<div>
+						<div class="form-group">
+							<label class="control-label">Latitude:</label> 
+							<input type="text" name="latitude" class="form-control" th:if="${mode=='new'}"
+								th:value="latitude" />
+							<input type="text" name="latitude" class="form-control" th:if="${mode=='edit'}"
+								th:value="${lieu.latitude}"/>
+						</div>
+							<button type="submit" class="btn btn-yellow">Valider</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

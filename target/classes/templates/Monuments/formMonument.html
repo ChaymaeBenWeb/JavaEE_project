@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Ajout Monument</title>
+</head>
+<body>
+	<div layout:fragment="Mycontent">
+		<div class="container mt-5">
+		<div class="card">
+			<div class="card-header bg-warning text-white" th:if="${mode=='new'}"> Ajout des Monuments </div>
+			<div class="card-header bg-warning text-white" th:if="${mode=='edit'}">Modification des Monuments </div>
+							<div class="card-body">
+					<form name ="monument" th:action="@{saveMonument}" method="post">
+							
+					
+						<div class="form-group" style= "visibility:visible" th:if="${mode=='new'}">
+							<label class="control-label">Code_M:</label> 
+								
+								<input type="text" name="codeM" class="form-control" 
+								th:value="codeM"/>
+						</div>
+						<div class="form-group" style= "visibility:hidden" th:if="${mode=='edit'}">
+							<label class="control-label">Code_M</label> 
+								
+								<input type="text" name="codeM" class="form-control" 
+								th:value="${monument.codeM}"/>
+						</div>
+						<div class="form-group">
+							<label class="control-label">NomM :</label>
+							<input type="text" name="nomM" class="form-control" th:if="${mode=='new'}"
+								th:value= "nomM" />
+							<input type="text" name="nomM" class="form-control" th:if="${mode=='edit'}"
+								th:value="${monument.nomM}" />
+						</div>
+							<!-- <div class="form-group">
+							<label class="control-label">MonuCodeLieu :</label>
+							<input type="text" name="codeLieu.codeInsee" class="form-control" th:if="${mode=='new'}"
+								th:value= "codeLieu.codeInsee" />
+							<input type="text" name="codeLieu" class="form-control" th:if="${mode=='edit'}"
+								th:value="${monument.codeLieu}" /> -->
+						</div>
+						<div class="form-group">
+							<label class="control-label">Proprietaire:</label> 
+							<input type="text" name="proprietaire" class="form-control" th:if="${mode=='new'}"
+								th:value="proprietaire"/>
+							<input type="text" name="proprietaire" class="form-control" th:if="${mode=='edit'}"
+								th:value="${monument.proprietaire}"/>
+						</div>
+						<div class="form-group">
+							<label class="control-label">TypeMonument :</label> 
+							<input type="text" name="typeMonument" class="form-control" th:if="${mode=='new'}"
+								th:value="typeMonument"/>
+							<input type="text" name="typeMonument" class="form-control"  th:if="${mode=='edit'}"
+								th:value="${monument.typeMonument}"/>	
+						</div>
+						<div class="form-group">
+							<label class="control-label">Longitude:</label> 
+							<input type="text" name="longitude" class="form-control" th:if="${mode=='new'}"
+								th:value="longitude" />
+							<input type="text" name="longitude" class="form-control" th:if="${mode=='edit'}"
+								th:value="${monument.longitude}"/>
+						</div>
+						<div>
+						<div class="form-group">
+							<label class="control-label">Latitude:</label> 
+							<input type="text" name="latitude" class="form-control" th:if="${mode=='new'}"
+								th:value="latitude" />
+							<input type="text" name="latitude" class="form-control" th:if="${mode=='edit'}"
+								th:value="${monument.latitude}"/>
+						</div>
+						   <div class="form-group">
+                    <label class="control-label">Celibrites :</label>
+                    <select class="form-control" name="celebrites" multiple="multiple">
+                        <option th:each="c : ${celebrite}"
+                                th:selected="${c.getNumCelebrite()}"
+                                th:value="${c.getNumCelebrite()}"
+                                th:text="${c.getPrenom()}"
+                                >celebrites
+                        </option>
+                    </select>
+                </div>
+							<button type="submit" class="btn btn-yellow">Valider</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+<head>
+<meta charset="utf-8">
+<title>form celebrite</title>
+</head>
+<body>
+	<div class="phoCel-container">
+	<div layout:fragment="Mycontent">
+	
+		<div class="container mt-5">
+		<div class="card">
+			<div class="card-header bg-warning text-white" th:if="${mode=='new'}"> Ajout des Celebrites </div>
+			<div class="card-header bg-warning text-white" th:if="${mode=='edit'}">Modification des Celebrites </div>
+							<div class="card-body">
+					<form name ="celebrite" th:action="@{saveCelebrite}" method="post">
+							
+					
+						<div class="form-group" style= "visibility:visible" th:if="${mode=='new'}">
+							<label class="control-label">Numero celebrite:</label> 
+								
+								<input type="number" name="numCelebrite" class="form-control" 
+								th:value="numCelebrite"/>
+						</div>
+						<div class="form-group" style= "visibility:hidden" th:if="${mode=='edit'}">
+							<label class="control-label">Numero celebrite:</label> 
+								
+								<input type="number" name="numCelebrite" class="form-control" 
+								th:value="${celebrite.numCelebrite}"/>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nom celebrité :</label> 
+							<input type="text" name="nom" class="form-control" th:if="${mode=='new'}"
+								th:value= "nom" />
+							<input type="text" name="nom" class="form-control" th:if="${mode=='edit'}"
+								th:value="${celebrite.nom}" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Prénom celebrité:</label> 
+							<input type="text" name="prenom" class="form-control" th:if="${mode=='new'}"
+								th:value="prenom"/>
+							<input type="text" name="prenom" class="form-control" th:if="${mode=='edit'}"
+								th:value="${celebrite.prenom}"/>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nationalité :</label> 
+							<input type="text" name="nationalite" class="form-control" th:if="${mode=='new'}"
+								th:value="nationalite"/>
+							<input type="text" name="nationalite" class="form-control"  th:if="${mode=='edit'}"
+								th:value="${celebrite.nationalite}"/>
+								
+						</div>
+						<div class="form-group">
+							<label class="control-label">Epoque:</label> 
+							<input type="text" name="epoque" class="form-control" th:if="${mode=='new'}"
+								th:value="epoque" />
+							<input type="text" name="epoque" class="form-control" th:if="${mode=='edit'}"
+								th:value="${celebrite.epoque}"/>
+						</div>
+						<div>
+						 <div class="form-group">
+                        <label class="control-label">Monuments :</label>
+                        <select  class="form-control" name="monuments" multiple="multiple">
+                            <option th:each="m : ${monuments}"
+                                    th:value="${{m}}"
+                                    th:text="${m.getNomM()}">monuments
+                            </option>
+                        </select>
+                    </div>
+							<button type="submit" class="btn btn-yellow">Valider</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

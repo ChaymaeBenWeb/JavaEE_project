@@ -1,0 +1,190 @@
+h1{
+	width : 100%; 
+	left : 0; 
+	margin : 0; 
+	padding : 0; 
+	text-align : center;
+	color: pink;
+}
+
+.footer {
+    /* Set the fixed height of the footer here */
+    background-color: #f5f5f5;
+    text-align:center;
+    display : table-row;    
+    padding: 6px;
+	width: 100%;
+	height: 7%;
+	position: fixed;
+	bottom:0;
+	color: white;
+	line-height: 0.5em;
+   
+}
+table {
+    width: 100%;
+}
+
+th {
+    height: 50px;
+    text-align: center;
+}
+
+#fond{
+top:0%; height:100%;
+left:0; width:100%;
+}
+body {
+background-image: url(memo/images/Accueil.gif);
+background-repeat: no-repeat;
+margin-left: 0%;
+margin-top: 2%;
+margin-right: 0%;
+margin-bottom: 0%;
+} 
+
+#background-container{
+	position:fixed;
+	bottom:0;
+	right:0;
+	min-heigth: 100%;
+	min-width: 100%;
+	z-index:-100;
+	
+}
+
+body {
+	position: relative;
+	
+	display : table;
+	width: 100%;
+	}
+
+#background-container{
+	position:fixed;
+	bottom:0;
+	right:0;
+	min-heigth: 100%;
+	min-width: 100%;
+	z-index:-100;
+	
+}
+
+a {
+	color: hotpink;
+	font: small-caps 1.1em/30px Georgia,serif;
+	text-decoration: none;
+}
+a:hover {
+	color: lightpink;
+}
+
+
+div#slider { 
+	overflow: hidden;
+	width: 100%; 
+	max-width: 1000px;	
+	
+	
+}
+
+div#slider figure { 
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  animation: 30s slidy infinite; 
+}
+div#slider figure img { 
+	width: 20%; 
+	height: auto; 
+	float: left; 
+	margin: 0;
+
+}
+
+@keyframes slidy {
+  0% { left: 0%; }
+  20% { left: 0%; }
+  25% { left: -100%; }
+  45% { left: -100%; }
+  50% { left: -200%; }
+  70% { left: -200%; }
+  75% { left: -300%; }
+  95% { left: -300%; }
+  100% { left: -400%; }
+}
+
+div#slider figure {
+  position: relative;
+  width: 500%;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  left: 0;
+  text-align: left;
+  animation: 30s slidy infinite;
+  
+}
+#center{
+		text-align: center;
+}
+.photo-container {
+  background-image: url(https://mdbcdn.b-cdn.net/img/new/standard/city/044.jpg);
+  background-size: cover;
+  height: 100vh;
+  background-position-x: 50%;
+  background-position-y: center;
+  box-shadow: inset 0px 0px 0 2000px rgba(0,0,0,0.5);
+}
+
+.phoCel-container {
+  background-image: url(https://mdbcdn.b-cdn.net/img/new/standard/city/044.jpg);
+  background-size: cover;
+  height: 100vh;
+  background-position-x: 50%;
+  background-position-y: center;
+  box-shadow: inset 0px 0px 0 2000px rgba(0,0,0,0.5);
+}
+.btn-yellow {
+    background: rgb(250, 255, 140);
+    color: #574500;
+    border: none;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.btn-yellow:hover, .btn-yellow:focus {
+    background: rgb(252, 255, 179);
+}
+.btn-yellow:active {
+    background: rgb(247, 255, 71);
+}
+
+.btn-pink {
+    background: pink;
+    color: white;
+    border: none;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.btn-pink:hover, .btn-pink:focus {
+    background: lightpink;
+}
+.btn-pink:active {
+    background: hotpink;
+}
+
+.table .thead-dark th {
+
+    color: #fff;
+
+    background-color: #620000;
+
+    border-color: #FF8888;
+
+}
+
